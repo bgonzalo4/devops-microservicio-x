@@ -1,0 +1,21 @@
+name: CI Pipeline
+
+# Se ejecuta al hacer 'push' a develop o al abrir un PR dirigido a main
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Descargar el código del repositorio
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # Paso 2: Mensaje de confirmación en la consola
+      - name: Confirmación de ejecución
+        run: echo "El pipeline se ha ejecutado correctamente para la rama ${{ github.ref }}"
